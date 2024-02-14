@@ -62,9 +62,80 @@ $(document).ready(function(){
 
 
 
+  //HEART COUNTER ----------------------------------------------------------------------------------------------------------------//
+
+
+
+  // Variables
+
+const likeBtn = document.querySelectorAll('.heart');
+const numberOfLikesElement = document.querySelector('.number-of-likes');
+
+console.log(likeBtn);
+
+// let numberOfLikes = Number.parseInt(numberOfLikesElement.textContent, 10);
+let isLiked = false;
+
+// Functions
+
+const likeClick = (likeBtn) => {
+  if (!isLiked) {
+    likeBtn.classList.add('isLiked');
+  
+    let numberOfLikes = Number.parseInt(likeBtn.nextElementSibling.textContent);
+     numberOfLikes++;
+    console.log(numberOfLikes);
+    isLiked = !isLiked;
+    likeBtn.nextElementSibling.textContent = numberOfLikes;
+  }else {
+        likeBtn.classList.remove('isLiked');
+        let numberOfLikes = Number.parseInt(likeBtn.nextElementSibling.textContent);
+        numberOfLikes--;
+        isLiked = !isLiked;
+        likeBtn.nextElementSibling.textContent = numberOfLikes;
+      }
+    };
+
+  likeBtn.forEach((element) => 
+  {
+    
+    element.addEventListener('click', function(){
+      likeClick(element);
+console.log('click');
+    }
+    );
+  }
+  );
+
+
+
+
+
+//     isLiked = !isLiked;
+//   } else {
+//     likeBtn.classList.remove('isLiked');
+//     numberOfLikes--;
+//     numberOfLikesElement.textContent = numberOfLikes;
+//     isLiked = !isLiked;
+//   }
+// };
+
+
+// Event Listeners
+
+// likeBtn.addEventListener('click', likeClick);
+
+
+
+
+
+//HEART COLOR CHANGE---------------------------------------------------------------------------------------------------------------//
+
+
+
+
+
   /*BACK TO TOP ARROW*/
-
-
   document.addEventListener('scroll',(e)=>{
   
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -85,5 +156,27 @@ $(document).ready(function(){
       }, 
       9
       )
-  }
-  
+  } //END back totop
+
+
+  // VIEW ALL MENU BUTTON---------------------------------------------------------------------------------------//
+
+  const buttonViewAll = document.getElementById("view-all");
+
+  buttonViewAll.addEventListener("click", () => {
+    let hiddenMenu = document.getElementById("hidden-menu");
+    // hiddenMenu.style.display = "grid";
+    // element.classList.add("my-class");
+    hiddenMenu.classList.remove("hidden");
+  });
+
+
+
+// HAMBURGER BUTTON----------------------------------------------------------------------------------------------//
+
+const hamburgerBtn = document.getElementById("hamburger-button");
+
+hamburgerBtn.addEventListener("click", () => {
+  document.getElementById("hamburger-button").classList.toggle("change");
+  document.getElementById("nav-links").classList.toggle("change");
+} );
